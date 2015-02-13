@@ -191,7 +191,7 @@ void drawSkeleton(int userId)
 //  values.setFloat(0, jointPos.x);
 //  values.setFloat(1, jointPos.y);
 //  values.setFloat(2, jointPos.z);
-  s.sendToAll(Float.toString(jointPos.x) + "," + Float.toString(jointPos.y) +"," + Float.toString(jointPos.z));
+  s.sendToAll(Float.toString(jointPos.x) + ", " + Float.toString(jointPos.y) +", " + Float.toString(jointPos.z));
   
   context.drawLimb(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   

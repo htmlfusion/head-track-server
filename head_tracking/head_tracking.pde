@@ -208,7 +208,7 @@ void drawSkeleton(int userId)
   leftHand.put("z", jointLeftHandPos.z);
 
   PVector jointRightHandPos = new PVector();
-  context.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, jointRightHandPos);
+  context.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_RIGHT_HAND, jointRightHandPos);
      
   JSONObject rightHand = new JSONObject();
   rightHand.put("x", jointRightHandPos.x); 

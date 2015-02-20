@@ -10,6 +10,8 @@ import org.java_websocket.WebSocketImpl;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
+import org.json.simple.JSONObject;
+
 /* --------------------------------------------------------------------------
  * SimpleOpenNI User Test
  * --------------------------------------------------------------------------
@@ -184,14 +186,45 @@ void draw()
 // draw the skeleton with the selected joints
 void drawSkeleton(int userId)
 {
-  PVector jointPos = new PVector();
-  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_HEAD,jointPos);
-  println(jointPos);
-  JSONArray values = new JSONArray();
+  PVector jointHeadPos = new PVector();
+  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_HEAD,jointHeadPos);
+  
+//  JSONArray values = new JSONArray();
 //  values.setFloat(0, jointPos.x);
 //  values.setFloat(1, jointPos.y);
 //  values.setFloat(2, jointPos.z);
-  s.sendToAll(Float.toString(jointPos.x) + ", " + Float.toString(jointPos.y) +", " + Float.toString(jointPos.z));
+
+  JSONObject head = new JSONObject();
+  head.put("x", jointHeadPos.x);
+  head.put("y", jointHeadPos.y);
+  head.put("z", jointHeadPos.x);
+ 
+  PVector jointLeftHandPos = new PVector();
+  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,jointLeftHandPos);
+  
+  JSONObject leftHand = new JSONObject();
+  leftHand.put("x", jointLeftHandPos.x);
+  leftHand.put("y", jointLeftHandPos.y);
+  leftHand.put("z", jointLeftHandPos.z);
+
+  PVector jointRightHandPos = new PVector();
+  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,jointRightHandPos);
+     
+  JSONObject rightHand = new JSONObject();
+  rightHand.put("x", jointRightHandPos.x); 
+  rightHand.put("y", jointRightHandPos.y); 
+  rightHand.put("z", jointRightHandPos.z); 
+                    
+  JSONObject bodyPos = new JSONObject();   
+  bodyPos.put("head", head);
+  bodyPos.put("left_hand", leftHand);
+  bodyPos.put("right_hand", rightHand);
+
+  println(bodyPos);
+  //String bodyPosText = JSONValue.toJSONString(bodyPos);
+  s.sendToAll(bodyPos.toString());
+  
+  //s.sendToAll(Float.toString(jointPos.x) + ", " + Float.toString(jointPos.y) +", " + Float.toString(jointPos.z));
   
   context.drawLimb(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   

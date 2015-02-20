@@ -187,7 +187,7 @@ void draw()
 void drawSkeleton(int userId)
 {
   PVector jointHeadPos = new PVector();
-  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_HEAD,jointHeadPos);
+  context.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_HEAD, jointHeadPos);
   
 //  JSONArray values = new JSONArray();
 //  values.setFloat(0, jointPos.x);
@@ -197,10 +197,10 @@ void drawSkeleton(int userId)
   JSONObject head = new JSONObject();
   head.put("x", jointHeadPos.x);
   head.put("y", jointHeadPos.y);
-  head.put("z", jointHeadPos.x);
+  head.put("z", jointHeadPos.z);
  
   PVector jointLeftHandPos = new PVector();
-  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,jointLeftHandPos);
+  context.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, jointLeftHandPos);
   
   JSONObject leftHand = new JSONObject();
   leftHand.put("x", jointLeftHandPos.x);
@@ -208,7 +208,7 @@ void drawSkeleton(int userId)
   leftHand.put("z", jointLeftHandPos.z);
 
   PVector jointRightHandPos = new PVector();
-  context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,jointRightHandPos);
+  context.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, jointRightHandPos);
      
   JSONObject rightHand = new JSONObject();
   rightHand.put("x", jointRightHandPos.x); 
